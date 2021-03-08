@@ -16,14 +16,14 @@ tf.random.set_seed(1618)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 # ALGORITHM = "guesser"
-# ALGORITHM = "tf_net"
-ALGORITHM = "tf_conv"
+ALGORITHM = "tf_net"
+# ALGORITHM = "tf_conv"
 
 # DATASET = "mnist_d"
-DATASET = "mnist_f"
+# DATASET = "mnist_f"
 # DATASET = "cifar_10"
 # DATASET = "cifar_100_f"
-# DATASET = "cifar_100_c"
+DATASET = "cifar_100_c"
 
 if DATASET == "mnist_d":
     NUM_CLASSES = 10
@@ -70,7 +70,7 @@ def guesserClassifier(xTest):
 
 def buildTFNeuralNet(x, y, eps=6):
     model = keras.models.Sequential([keras.layers.Flatten(), keras.layers.Dense(
-        768, activation=tf.nn.relu), keras.layers.Dense(10, activation=tf.nn.softmax)])
+        768, activation=tf.nn.relu), keras.layers.Dense(NUM_CLASSES, activation=tf.nn.softmax)])
     opt = keras.optimizers.Adam(learning_rate=0.0009)
     model.compile(optimizer=opt,
                   loss='categorical_crossentropy', metrics=['accuracy'])
